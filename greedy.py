@@ -5,36 +5,42 @@ import time
 
 def main():
         min = 0
-        max = 800
+        max = 200
         vertexes = set()
-        for i in range(0, 8):
-                vertexes.add(randomVertex(min, max))
+        #for i in range(0, 10):
+        #        vertexes.add(randomVertex(min, max))
+
+
+	vertexes.add(Vertex(50, 50))
+	vertexes.add(Vertex(190, 50))
+
+	vertexes.add(Vertex(100, 100))
+	vertexes.add(Vertex(110, 110))
+	vertexes.add(Vertex(90, 90))
+
+	vertexes.add(Vertex(190, 190))
+	vertexes.add(Vertex(185, 190))
+	vertexes.add(Vertex(170, 185))
 
 	print len(vertexes)
 	
 	s_greedy = greedy(vertexes, 3)
 	
-        points = []
+	plot_points(s_greedy, "ro")
 
-        for v in vertexes:
-                points.append(v.points())
-
-        x_list = [x for [x, y] in points]
-        y_list = [y for [x, y] in points]
-
-        plt.plot(x_list, y_list, "ro")
-
-	s_points = []
-	
-	for s in s_greedy:
-		s_points.append(s.points())
-
-	x_greedy = [x for [x, y] in s_points]
-	y_greedy = [y for [x, y] in s_points]
-
-	plt.plot(x_greedy, y_greedy, "bo")
+	plot_points(vertexes, "bo")
 
         plt.show()	
+
+def plot_points(vertexes, marker):
+	points = []
+	for v in vertexes:
+		points.append(v.points())
+
+	xs = [x for [x, y] in points]
+	ys = [y for [x, y] in points]
+
+	plt.plot(xs, ys, marker)
 
 def greedy(vertexes, k):
 	s = [];
@@ -50,23 +56,26 @@ def greedy(vertexes, k):
 
 def randomPick(vertexes):
 	# rndm plz ;)
-	return vertexes.pop();
+	pick = random.sample(vertexes, 1)[0]
+	vertexes.remove(pick)
+	return pick
 
 def distance(vertexes, picked):
-	max = 0
-	max_v = None
+	min = np.inf 
+	min_v = None
 	real_max = 0
 	real_max_v = None
 	for v in vertexes:
+		min = np.inf
 		for p in picked:	
 			d = np.sqrt((v.x - p.x)**2 + (v.y - p.y)**2)
-			print ("from %s to %s: %s" % (p, v, d))
-			if d > max:
-				max = d
-				max_v = v
-		if max > real_max:
-			real_max = max
-			real_max_v = max_v
+			print("current min %s vs %d" % (min, d))
+			if d < min:
+				min = d
+				min_v = v
+		if min > real_max:
+			real_max = min 
+			real_max_v = min_v
 			
 	print real_max, real_max_v
 
