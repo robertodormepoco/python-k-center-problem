@@ -47,7 +47,9 @@ def greedy(vertexes, k):
 		s.append(max)
 	return s
 
+
 def randomPick(vertexes):
+	# rndm plz ;)
 	return vertexes.pop();
 
 def distance(vertexes, picked):
