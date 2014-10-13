@@ -61,7 +61,7 @@ def distance(vertexes, picked):
 		for p in picked:	
 			d = np.sqrt((v.x - p.x)**2 + (v.y - p.y)**2)
 			print ("from %s to %s: %s" % (p, v, d))
-			if d >= max:
+			if d > max:
 				max = d
 				max_v = v
 		if max > real_max:
