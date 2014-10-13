@@ -7,24 +7,10 @@ def main():
         min = 0
         max = 200
         vertexes = set()
-        #for i in range(0, 10):
-        #        vertexes.add(randomVertex(min, max))
+        for i in range(0, 100):
+                vertexes.add(randomVertex(min, max))
 
-
-	vertexes.add(Vertex(50, 50))
-	vertexes.add(Vertex(190, 50))
-
-	vertexes.add(Vertex(100, 100))
-	vertexes.add(Vertex(110, 110))
-	vertexes.add(Vertex(90, 90))
-
-	vertexes.add(Vertex(190, 190))
-	vertexes.add(Vertex(185, 190))
-	vertexes.add(Vertex(170, 185))
-
-	print len(vertexes)
-	
-	s_greedy = greedy(vertexes, 3)
+	s_greedy = greedy(vertexes, 10)
 	
 	plot_points(s_greedy, "ro")
 
